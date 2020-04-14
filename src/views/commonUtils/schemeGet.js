@@ -1,7 +1,8 @@
 import React, {Component} from 'react';
 import WtHeader from '../../components/common/wtHeader'
 import { connect } from 'react-redux'
-import {getColumnsList} from '../../store/actions/commonUtilsActions';
+import {getColumnsList} from '../../store/actions/commonUtilsActions'
+
 
 class schemeGet extends Component {
     constructor(props) {
@@ -10,31 +11,39 @@ class schemeGet extends Component {
     }
 
     componentDidMount () {
-        const action = getColumnsList()
-        console.log(action)
+        this.props.getList()
     }
 
     render() {
         return (
             <div>
                 <WtHeader
+                    onClick={this.props.getColumnsList}
                 />
+                {
+                    this.props.column.map((item, index) => {
+                        return (
+                            <p key={index}>{item}</p>
+                        )
+                    })
+                }
             </div>
         );
     }
 }
 
 const mapStateToProps = (state) => {
-    console.log(state)
     return {
         column: state.commonUtilsReducers.column
     }
 }
 const mapDispatchToProps = (dispatch) => {
     return {
-        /*onSwitchColor: (color) => {
-            dispatch({ type: 'CHANGE_COLOR', themeColor: color })
-        }*/
+        getList: () => {
+            const action = getColumnsList()
+            console.log(action)
+            dispatch(action)
+        }
     }
 }
 

@@ -1,6 +1,7 @@
 // 项目配置
 const projectConfig = (function () {
-    switch (process.env.VUE_APP_ENV) {
+    // switch (process.env.VUE_APP_ENV) {
+    switch ('production') {
         case 'production':
             return {
                 apiUrl: 'https://wenqu.prod.wangtiansoft.com/server',
