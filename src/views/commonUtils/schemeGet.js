@@ -1,6 +1,8 @@
 import React, {Component} from 'react';
 import WtHeader from '../../components/common/wtHeader'
-class Home extends Component {
+import { connect } from 'react-redux'
+
+class schemeGet extends Component {
     constructor(props) {
         super(props);
         this.state = {}
@@ -9,10 +11,24 @@ class Home extends Component {
     render() {
         return (
             <div>
-                <WtHeader />
+                <WtHeader
+                />
             </div>
         );
     }
 }
 
-export default Home;
+const mapStateToProps = (state) => {
+    return {
+        themeColor: state.ColorReducers.themeColor
+    }
+}
+const mapDispatchToProps = (dispatch) => {
+    return {
+        onSwitchColor: (color) => {
+            dispatch({ type: 'CHANGE_COLOR', themeColor: color })
+        }
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(schemeGet);
