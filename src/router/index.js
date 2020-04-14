@@ -1,5 +1,5 @@
 import React from 'react';
-import { HashRouter as Router, Route, Link } from "react-router-dom";
+import { HashRouter as Router, Route, Switch } from "react-router-dom";
 import schemeGet from '../views/commonUtils/schemeGet'
 
 function Index() {
@@ -14,9 +14,11 @@ function AppRouter() {
   return (
       <div className="router-box">
           <Router>
-              <Route path="/" exact component={Index} />
-              <Route path="/commonUtils/schemeGet" exact component={schemeGet} />
-              <Route path="/list/" component={List} />
+              <Switch>
+                  <Route path="/" exact component={Index} />
+                  <Route path="/commonUtils/schemeGet" exact component={schemeGet} />
+                  <Route path="/list/" component={List} />
+              </Switch>
           </Router>
       </div>
   );

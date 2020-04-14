@@ -1,11 +1,17 @@
 import React, {Component} from 'react';
 import WtHeader from '../../components/common/wtHeader'
 import { connect } from 'react-redux'
+import {getColumnsList} from '../../store/actions/commonUtilsActions';
 
 class schemeGet extends Component {
     constructor(props) {
         super(props);
         this.state = {}
+    }
+
+    componentDidMount () {
+        const action = getColumnsList()
+        console.log(action)
     }
 
     render() {
@@ -19,15 +25,16 @@ class schemeGet extends Component {
 }
 
 const mapStateToProps = (state) => {
+    console.log(state)
     return {
-        themeColor: state.ColorReducers.themeColor
+        column: state.commonUtilsReducers.column
     }
 }
 const mapDispatchToProps = (dispatch) => {
     return {
-        onSwitchColor: (color) => {
+        /*onSwitchColor: (color) => {
             dispatch({ type: 'CHANGE_COLOR', themeColor: color })
-        }
+        }*/
     }
 }
 

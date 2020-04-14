@@ -1,7 +1,7 @@
 import axios from 'axios'
-import { projectConfig } from '@/config'
+import { projectConfig } from '../config'
 import auth from './auth'
-import { obj2Str } from './utils'
+// import { obj2Str } from './utils'
 // 创建axios实例
 
 const http = axios.create({
@@ -13,7 +13,7 @@ const http = axios.create({
 // 请求拦截器
 http.interceptors.request.use(config => {
         console.log(config)
-        config.url = config.url + obj2Str(config.data)
+        // config.url = config.url + obj2Str(config.data)
         config.headers.common['x-access-token'] = auth.getToken() || ''
         return config
     }, err => {
