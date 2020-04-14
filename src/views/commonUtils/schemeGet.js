@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-
+import WtHeader from '../../components/common/wtHeader'
 class Home extends Component {
     constructor(props) {
         super(props);
@@ -9,7 +9,7 @@ class Home extends Component {
     render() {
         return (
             <div>
-
+                <WtHeader />
             </div>
         );
     }

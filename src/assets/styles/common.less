@@ -1,0 +1,50 @@
+// 全局样式
+* {
+  box-sizing: border-box;
+  word-wrap:break-word; /*连续的数字或者英文就会不换行 得使用强制换行*/
+  word-break:break-all; /*连续的数字或者英文就会不换行 得使用强制换行*/
+}
+
+html,body {
+  width: 100%;
+  height: 100%;
+  overflow-x: hidden;
+  margin: 0;
+  padding: 0;
+}
+
+ul, li {
+  list-style: none;
+  padding: 0;
+}
+
+input,button,select,textarea{outline:none}
+textarea{resize:none}
+
+.fl {
+  float: left;
+}
+
+.fr {
+  float: right;
+}
+
+.clearfix{
+  zoom: 1;
+}
+.clearfix:after{
+  clear: both;
+  content: '';
+  display: inline-block;
+}
+.mask{
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 100%;
+  background-color: rgba(0,0,0,.5);
+  z-index: 2020;
+  overflow: hidden;
+}
