@@ -1,6 +1,6 @@
 import React from 'react';
 import { HashRouter as Router, Route, Switch } from "react-router-dom";
-import schemeGet from '../views/commonUtils/schemeGet'
+import schemeGet from '../views/commonUtils/schemeGet/index'
 
 function Index() {
   return <h2>JSPang.com</h2>;

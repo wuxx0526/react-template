@@ -6,11 +6,10 @@ import './assets/styles/common.less'
 import { Provider } from 'react-redux';
 import store from './store';
 ReactDOM.render(
-  <React.StrictMode>
-      <Provider store={store}>
-          <AppRouter />
-      </Provider>
-  </React.StrictMode>,
+  <Provider store={store}>
+      <AppRouter />
+  </Provider>
+  ,
   document.getElementById('root')
 );
 

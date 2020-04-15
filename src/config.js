@@ -1,7 +1,7 @@
 // 项目配置
 const projectConfig = (function () {
     // switch (process.env.VUE_APP_ENV) {
-    switch ('production') {
+    switch ('test') {
         case 'production':
             return {
                 apiUrl: 'https://wenqu.prod.wangtiansoft.com/server',
@@ -10,7 +10,7 @@ const projectConfig = (function () {
             }
         case 'development':
             return {
-                apiUrl: 'https://ywyd.dev.wangtiansoft.com/wenqu-server',
+                apiUrl: 'http://ywyd.dev.wangtiansoft.com/wenqu-server',
                 appId: 'wxc2059d7de6909b94',
                 deployUrl: 'http://ywyd.dev.wangtiansoft.com/utils/#'
             }

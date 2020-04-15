@@ -10,7 +10,7 @@ module.exports = override(
         require('postcss-px-to-viewport')({
             viewportWidth: 750,
             propList: ['*'],
-            selectorBlackList: ['weui', 'van'] // 要忽略的选择器
+            selectorBlackList: ['weui', 'am'] // 要忽略的选择器
         }),
         require('autoprefixer')({
             overrideBrowserslist: ['Android >= 4.0', 'iOS >= 8']

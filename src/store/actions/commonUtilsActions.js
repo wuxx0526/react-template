@@ -9,8 +9,14 @@ export const getColumnsAction = (value)=>({
 export const getColumnsList = () => {
     return (dispatch) => {
         http.post('/api/pq/question', { qLevel: 1}).then(res => {
-            const action = getColumnsAction()
-            dispatch(action, res.data)
+            if (res.code === '0') {
+                res.data.forEach(item => {
+                    item.label = item.qType
+                    item.value = item.id
+                })
+                const action = getColumnsAction(res.data)
+                dispatch(action)
+            }
         })
     }
 }

@@ -1,9 +1,10 @@
 import React, {Component} from 'react';
-import WtHeader from '../../components/common/wtHeader'
+import WtHeader from '../../../components/common/wtHeader'
 import { connect } from 'react-redux'
-import {getColumnsList} from '../../store/actions/commonUtilsActions'
+import {getColumnsList} from '../../../store/actions/commonUtilsActions'
+import Ui from './ui'
 
-class schemeGet extends Component {
+class index extends Component {
     constructor(props) {
         super(props);
         this.state = {}
@@ -14,18 +15,14 @@ class schemeGet extends Component {
     }
 
     render() {
+        const {column} = this.props
         return (
             <div>
                 <WtHeader
-                    onClick={this.props.getColumnsList}
                 />
-                {
-                    this.props.column.map((item, index) => {
-                        return (
-                            <p key={index}>{item}</p>
-                        )
-                    })
-                }
+                <Ui
+                    column={column}
+                />
             </div>
         );
     }
@@ -45,4 +42,4 @@ const mapDispatchToProps = (dispatch) => {
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(schemeGet);
+export default connect(mapStateToProps, mapDispatchToProps)(index);
