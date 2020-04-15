@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import backIcon from '../../../assets/image/icon_back@2x.png'
+import backIcon from '../../assets/image/icon_back@2x.png'
 import './index.less'
 import { withRouter } from 'react-router-dom'
 

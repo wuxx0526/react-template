@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import WtHeader from '../../../components/common/wtHeader'
+import WtHeader from '../../../components/wtHeader'
 import { connect } from 'react-redux'
 import {getColumnsList} from '../../../store/actions/commonUtilsActions'
 import Ui from './ui'

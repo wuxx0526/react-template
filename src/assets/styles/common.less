@@ -1,6 +1,7 @@
 // 全局样式
 * {
   box-sizing: border-box;
+  font-size: 28px;
   word-wrap:break-word; /*连续的数字或者英文就会不换行 得使用强制换行*/
   word-break:break-all; /*连续的数字或者英文就会不换行 得使用强制换行*/
 }
@@ -56,4 +57,9 @@ textarea{resize:none}
   right: 0;
   width: 100%;
   margin: 0 auto;
+}
+.ellipsis {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
