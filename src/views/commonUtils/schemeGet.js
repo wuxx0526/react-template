@@ -3,7 +3,6 @@ import WtHeader from '../../components/common/wtHeader'
 import { connect } from 'react-redux'
 import {getColumnsList} from '../../store/actions/commonUtilsActions'
 
-
 class schemeGet extends Component {
     constructor(props) {
         super(props);
@@ -41,7 +40,6 @@ const mapDispatchToProps = (dispatch) => {
     return {
         getList: () => {
             const action = getColumnsList()
-            console.log(action)
             dispatch(action)
         }
     }
