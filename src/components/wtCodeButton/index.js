@@ -1,7 +1,8 @@
 import React, {Component} from 'react';
-import './index.less'
+import './index.less';
 import {Button} from 'antd-mobile';
 import http from "../../utils/http";
+import validate from "../../utils/validate";
 
 class WtCodeButton extends Component {
     constructor(props) {
@@ -22,26 +23,21 @@ class WtCodeButton extends Component {
                 mobile: 13233334444,
                 email: ''
             }
-        }
+        },
+        mainKey: 'mobile',
+        isEmail: ''
     }
 
     render() {
         return (
             <Button
                 className={this.props.className}
-                onClick={this.getCodeByApi.bind(this)}
+                disabled={this.state.isDisabled}
+                onClick={this.props.getCodeByApi}
             >
                 {this.state.codeTxt}
             </Button>
         );
-    }
-
-    async getCodeByApi () {
-        const res = await http.post(this.props.apiData.apiUrl, this.props.apiData.params)
-        if (res.code === '0') {
-            console.log('发送成功')
-            this.countDown()
-        }
     }
 
     // 验证码倒计时
