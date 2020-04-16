@@ -1,13 +1,11 @@
 import React from 'react'
 import './index.less'
-import { Button, InputItem, Picker, List } from 'antd-mobile'
+import { Button, InputItem, Picker } from 'antd-mobile'
 import icon_down from '../../../assets/image/icon_down@2x.png'
 import icon_up from '../../../assets/image/icon_up@2x.png'
 
 const Ui = (props) => {
-    const {column} = props
-    // const column = [{label: '1', value: 1}]
-    console.log(column)
+    const {column, onFirstPickerChange, columnSecond, form, onSecondPickerChange, onInputChange} = props
     return (
         <div className="container">
             {/*banner*/}
@@ -23,12 +21,10 @@ const Ui = (props) => {
                             data={column}
                             title="请选择您遇到的问题"
                             cols={1}
-                            format={item => item.qType}
-                            onOk={e => console.log('ok', e)}
-                            onDismiss={e => console.log('dismiss', e)}
+                            onOk={onFirstPickerChange}
                     >
                         <div className="choose-question-content">
-                            <span className="ellipsis">2</span>
+                            <span className="ellipsis">{form.level1Name}</span>
                             <img v-show="!firstShow" src={icon_down} alt=""/>
                             {/*<img v-show="firstShow" src={icon_up} alt=""/>*/}
                         </div>
@@ -37,11 +33,18 @@ const Ui = (props) => {
                 </div>
                 <div className="choose-question-item">
                     <div className="choose-question-title">请选择您遇到的具体问题</div>
-                    <div className="choose-question-content">
-                        <span className="ellipsis">1</span>
-                        <img v-show="!secondShow" src={icon_down} alt=""/>
-                        {/*<img v-show="secondShow" src={icon_up} alt=""/>*/}
-                    </div>
+                    <Picker
+                        data={columnSecond}
+                        title="请选择您遇到的问题"
+                        cols={1}
+                        onOk={onSecondPickerChange}
+                    >
+                        <div className="choose-question-content">
+                            <span className="ellipsis">{form.level2Name}</span>
+                            <img v-show="!firstShow" src={icon_down} alt=""/>
+                            {/*<img v-show="firstShow" src={icon_up} alt=""/>*/}
+                        </div>
+                    </Picker>
                 </div>
             </div>
 
@@ -51,6 +54,7 @@ const Ui = (props) => {
                 <InputItem
                     type="digit"
                     className="production-num-input"
+                    onChange={value => {onInputChange(value, 'yield')}}
                 />
             </div>
 
@@ -60,11 +64,13 @@ const Ui = (props) => {
                 <InputItem
                     type="digit"
                     className="verify-phone-input"
+                    onChange={value => {onInputChange(value, 'mobile')}}
                 />
                 <div className="verify-code-box">
                     <InputItem
                         type="digit"
                         className="verify-code-input"
+                        onChange={value => {onInputChange(value, 'code')}}
                     />
                     <Button className="verify-code-btn">获取验证码</Button>
                 </div>

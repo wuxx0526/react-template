@@ -3,7 +3,11 @@ import {GET_COLUMNS} from '../types'
 const commonUtilsReducers = (state = {...commonUtilsState}, action) => {
     switch (action.type) {
         case GET_COLUMNS:
-            return { ...state, column: action.value }//这里action传入动态色值并同步到state
+            if (action.value.isFirst) {
+                return { ...state, column: action.value.data }
+            } else {
+                return { ...state, columnSecond: action.value.data }
+            }
         default:
             return state
     }

@@ -1,3 +1,4 @@
 export const commonUtilsState = {
-    column: []
+    column: [],
+    columnSecond: []
 }

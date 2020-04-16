@@ -6,15 +6,15 @@ export const getColumnsAction = (value)=>({
     value
 })
 
-export const getColumnsList = () => {
+export const getColumnsList = (params = { qLevel: 1}) => {
     return (dispatch) => {
-        http.post('/api/pq/question', { qLevel: 1}).then(res => {
+        http.post('/api/pq/question', params).then(res => {
             if (res.code === '0') {
                 res.data.forEach(item => {
                     item.label = item.qType
                     item.value = item.id
                 })
-                const action = getColumnsAction(res.data)
+                const action = getColumnsAction({...res, isFirst: params.qLevel === 1})
                 dispatch(action)
             }
         })
