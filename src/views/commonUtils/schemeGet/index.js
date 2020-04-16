@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 import {getColumnsList} from '../../../store/actions/commonUtilsActions'
 import Ui from './ui'
 
-class index extends Component {
+class SchemeGet extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -99,4 +99,4 @@ const mapDispatchToProps = (dispatch) => {
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(index);
+export default connect(mapStateToProps, mapDispatchToProps)(SchemeGet);

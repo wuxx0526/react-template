@@ -1,6 +1,7 @@
 import React from 'react'
 import './index.less'
 import { Button, InputItem, Picker } from 'antd-mobile'
+import WtCodeButton from "../../../components/wtCodeButton";
 import icon_down from '../../../assets/image/icon_down@2x.png'
 import icon_up from '../../../assets/image/icon_up@2x.png'
 
@@ -72,7 +73,7 @@ const Ui = (props) => {
                         className="verify-code-input"
                         onChange={value => {onInputChange(value, 'code')}}
                     />
-                    <Button className="verify-code-btn">获取验证码</Button>
+                    <WtCodeButton className="verify-code-btn" />
                 </div>
             </div>
         </div>
