@@ -18,11 +18,23 @@ class WtSubmitButton extends Component {
             <Button
                 className={this.props.className}
                 disabled={this.state.isDisabled}
-                onClick={this.props.onClick}
+                onClick={this.onClick.bind(this)}
             >
                 {this.props.title}
             </Button>
         );
+    }
+
+    onClick () {
+        this.setState({
+            isDisabled: true
+        })
+        this.timeOut1 = setTimeout(() => {
+            this.setState({
+                isDisabled: false
+            })
+        }, 1000)
+        this.props.onClick && this.props.onClick()
     }
 }
 export default WtSubmitButton;

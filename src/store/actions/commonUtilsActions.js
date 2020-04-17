@@ -1,10 +1,14 @@
-import {GET_COLUMNS}  from '../types'
+import {GET_COLUMNS, CLEAR_COLUMNS_SECOND}  from '../types'
 import http from '../../utils/http';
 
 export const getColumnsAction = (value)=>({
     type: GET_COLUMNS,
     value
 })
+
+export const clearColumnSecondAction = {
+    type: CLEAR_COLUMNS_SECOND
+}
 
 export const getColumnsList = (params = { qLevel: 1}) => {
     return (dispatch) => {

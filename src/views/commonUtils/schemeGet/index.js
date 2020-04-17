@@ -1,9 +1,11 @@
 import React, {Component} from 'react';
+import {Toast} from "antd-mobile";
 import WtHeader from '../../../components/wtHeader'
-import { connect } from 'react-redux'
-import {getColumnsList} from '../../../store/actions/commonUtilsActions'
+import {connect} from 'react-redux'
+import {getColumnsList, clearColumnSecondAction} from '../../../store/actions/commonUtilsActions'
 import Ui from './ui'
 import http from "../../../utils/http";
+import validate from "../../../utils/validate";
 
 class SchemeGet extends Component {
     constructor(props) {
@@ -17,11 +19,12 @@ class SchemeGet extends Component {
                 yield: '',
                 mobile: '',
                 code: ''
-            }
+            },
+            apiData: {}
         }
     }
 
-    componentDidMount () {
+    componentDidMount() {
         this.props.getList()
     }
 
@@ -38,12 +41,42 @@ class SchemeGet extends Component {
                     onFirstPickerChange={this.onFirstPickerChange.bind(this)}
                     onSecondPickerChange={this.onSecondPickerChange.bind(this)}
                     onInputChange={this.onInputChange.bind(this)}
+                    onSubmit={this.submitScheme.bind(this)}
                 />
             </div>
         );
     }
 
-    onInputChange (value, name) {
+    async submitScheme() {
+        const {form} = this.state
+        if (validate.isEmpty(form.level1PqId)) {
+            Toast.info('请选择您遇到的问题！')
+            return false
+        } else if (validate.isEmpty(form.level2PqId)) {
+            Toast.info('请选择您遇到的具体问题！')
+            return false
+        } else if (validate.isEmpty(form.yield)) {
+            Toast.info('请选择一造虾产量！')
+            return false
+        } else if (validate.isEmpty(form.mobile)) {
+            Toast.info('请输入手机号！！')
+            return false
+        } else if (!validate.checkMobile(form.mobile)) {
+            Toast.info('请输入正确的手机号！')
+            return false
+        } else if (validate.isEmpty(form.code)) {
+            Toast.info('请输入验证码！')
+            return false
+        }
+        http.post('/api/pq/get_sulotion', form)
+            .then(res => {
+                if (res.code === '0') {
+                    window.location.href = res.data
+                }
+            })
+    }
+
+    onInputChange(value, name) {
         const {form} = this.state
         this.setState({
             form: {
@@ -53,7 +86,8 @@ class SchemeGet extends Component {
         })
     }
 
-    onFirstPickerChange (val) {
+    onFirstPickerChange(val) {
+        this.props.clearColumnSecond()
         const {form} = this.state
         const {column} = this.props
         const id = val[0]
@@ -69,7 +103,7 @@ class SchemeGet extends Component {
         this.props.getList({qLevel: 2, preId: val[0]})
     }
 
-    onSecondPickerChange (val) {
+    onSecondPickerChange(val) {
         const {form} = this.state
         const {columnSecond} = this.props
         const id = val[0]
@@ -96,6 +130,9 @@ const mapDispatchToProps = (dispatch) => {
         getList: (params) => {
             const action = getColumnsList(params)
             dispatch(action)
+        },
+        clearColumnSecond: () => {
+            dispatch(clearColumnSecondAction)
         }
     }
 }

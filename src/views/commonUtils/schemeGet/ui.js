@@ -7,7 +7,7 @@ import icon_down from '../../../assets/image/icon_down@2x.png'
 import icon_up from '../../../assets/image/icon_up@2x.png'
 
 const Ui = (props) => {
-    const {column, onFirstPickerChange, columnSecond, form, onSecondPickerChange, onInputChange} = props
+    const {apiData, onSubmit, column, onFirstPickerChange, columnSecond, form, onSecondPickerChange, onInputChange} = props
     return (
         <div className="container">
             {/*banner*/}
@@ -39,6 +39,7 @@ const Ui = (props) => {
                         data={columnSecond}
                         title="请选择您遇到的问题"
                         cols={1}
+                        disabled={!form.level1PqId && columnSecond.length === 0}
                         onOk={onSecondPickerChange}
                     >
                         <div className="choose-question-content">
@@ -77,6 +78,7 @@ const Ui = (props) => {
                     <WtCodeButton
                         className="verify-code-btn"
                         mobile={form.mobile}
+                        apiData={apiData}
                     />
                 </div>
             </div>
@@ -84,6 +86,7 @@ const Ui = (props) => {
             <WtSubmitButton
                 className="btn-style"
                 title="获取解决方案"
+                onClick={onSubmit}
             />
         </div>
     )
