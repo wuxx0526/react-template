@@ -2,11 +2,12 @@ import React from 'react'
 import './index.less'
 import { InputItem, Picker } from 'antd-mobile'
 import WtCodeButton from "../../../components/wtCodeButton";
+import WtSubmitButton from "../../../components/wtSubmitButton";
 import icon_down from '../../../assets/image/icon_down@2x.png'
 import icon_up from '../../../assets/image/icon_up@2x.png'
 
 const Ui = (props) => {
-    const {getCodeByApi, column, onFirstPickerChange, columnSecond, form, onSecondPickerChange, onInputChange} = props
+    const {column, onFirstPickerChange, columnSecond, form, onSecondPickerChange, onInputChange} = props
     return (
         <div className="container">
             {/*banner*/}
@@ -75,10 +76,15 @@ const Ui = (props) => {
                     />
                     <WtCodeButton
                         className="verify-code-btn"
-                        getCodeByApi={getCodeByApi}
+                        mobile={form.mobile}
                     />
                 </div>
             </div>
+
+            <WtSubmitButton
+                className="btn-style"
+                title="获取解决方案"
+            />
         </div>
     )
 }

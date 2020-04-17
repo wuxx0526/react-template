@@ -1,8 +1,8 @@
 import React, {Component} from 'react';
 import './index.less';
-import {Button} from 'antd-mobile';
-import http from "../../utils/http";
+import {Button, Toast} from 'antd-mobile';
 import validate from "../../utils/validate";
+import http from "../../utils/http";
 
 class WtCodeButton extends Component {
     constructor(props) {
@@ -20,12 +20,10 @@ class WtCodeButton extends Component {
         apiData: {
             apiUrl: '/api/pq/smscode',
             params: {
-                mobile: 13233334444,
-                email: ''
+                mobile: 13233334444
             }
         },
-        mainKey: 'mobile',
-        isEmail: ''
+        mobile: ''
     }
 
     render() {
@@ -33,11 +31,27 @@ class WtCodeButton extends Component {
             <Button
                 className={this.props.className}
                 disabled={this.state.isDisabled}
-                onClick={this.props.getCodeByApi}
+                onClick={this.getCodeByApi.bind(this)}
             >
                 {this.state.codeTxt}
             </Button>
         );
+    }
+
+    async getCodeByApi () {
+        if (validate.isEmpty(this.props.mobile)) {
+            Toast.info('手机号不能为空')
+            return false
+        }
+        if (!validate.checkMobile(this.props.mobile)) {
+            Toast.info('请输入正确的手机号')
+            return false
+        }
+        const res = await http.post(this.props.apiData.apiUrl, this.props.apiData.params)
+        if (res.code === '0') {
+            console.log('发送成功')
+            this.countDown()
+        }
     }
 
     // 验证码倒计时
@@ -61,5 +75,4 @@ class WtCodeButton extends Component {
         }, 1000)
     }
 }
-
 export default WtCodeButton;

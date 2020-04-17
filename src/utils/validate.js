@@ -1,4 +1,9 @@
 export default class Validate {
+
+    static isEmpty (val) {
+        return val === '' || val === null || val === undefined;
+    }
+
     static checkMobile(phone) {
         if (phone === '' || phone === null || phone === undefined) {
             return false

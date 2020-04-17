@@ -38,18 +38,9 @@ class SchemeGet extends Component {
                     onFirstPickerChange={this.onFirstPickerChange.bind(this)}
                     onSecondPickerChange={this.onSecondPickerChange.bind(this)}
                     onInputChange={this.onInputChange.bind(this)}
-                    getCodeByApi={this.getCodeByApi.bind(this)}
                 />
             </div>
         );
-    }
-
-    async getCodeByApi () {
-        const res = await http.post(this.props.apiData.apiUrl, this.props.apiData.params)
-        if (res.code === '0') {
-            console.log('发送成功')
-            this.countDown()
-        }
     }
 
     onInputChange (value, name) {
