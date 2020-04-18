@@ -18,7 +18,7 @@ class WtHeader extends Component {
                         <img src={backIcon} alt="" />
                     </div>
                     <div className="header--box__middle">
-                        标题
+                        {this.props.title}
                     </div>
                     <div className="header--box__right">
                     </div>

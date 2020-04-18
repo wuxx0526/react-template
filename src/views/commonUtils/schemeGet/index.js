@@ -33,6 +33,7 @@ class SchemeGet extends Component {
         return (
             <div>
                 <WtHeader
+                    title="获取用药方案"
                 />
                 <Ui
                     column={column}

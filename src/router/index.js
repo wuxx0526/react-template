@@ -1,6 +1,7 @@
 import React from 'react';
 import { HashRouter as Router, Route, Switch } from "react-router-dom";
 import schemeGet from '../views/commonUtils/schemeGet/index'
+import bind from '../views/user/bind'
 
 function Index() {
   return <h2>JSPang.com</h2>;
@@ -17,6 +18,7 @@ function AppRouter() {
               <Switch>
                   <Route path="/" exact component={Index} />
                   <Route path="/commonUtils/schemeGet" exact component={schemeGet} />
+                  <Route path="/user/bind" component={bind} />
                   <Route path="/list/" component={List} />
               </Switch>
           </Router>
