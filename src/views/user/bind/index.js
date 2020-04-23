@@ -51,7 +51,8 @@ class Bind extends Component {
         }
         const res = await http.post('/api/pq/user/regist', form)
         if (res.code === '0') {
-            this.props.history.push('/')
+            Toast.info('绑定成功！')
+            // this.props.history.push('/')
         }
     }
 
