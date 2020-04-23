@@ -4,7 +4,7 @@ import { InputItem, Picker } from 'antd-mobile'
 import WtCodeButton from "../../../components/wtCodeButton";
 import WtSubmitButton from "../../../components/wtSubmitButton";
 import icon_down from '../../../assets/image/icon_down@2x.png'
-import icon_up from '../../../assets/image/icon_up@2x.png'
+// import icon_up from '../../../assets/image/icon_up@2x.png'
 
 const Ui = (props) => {
     const {apiData, onSubmit, column, onFirstPickerChange, columnSecond, form, onSecondPickerChange, onInputChange} = props

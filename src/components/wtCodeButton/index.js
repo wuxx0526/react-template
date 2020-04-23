@@ -39,11 +39,11 @@ class WtCodeButton extends Component {
     }
 
     async getCodeByApi () {
-        if (validate.isEmpty(this.props.mobile)) {
+        if (validate.isEmpty(this.props.apiData.params.mobile)) {
             Toast.info('手机号不能为空')
             return false
         }
-        if (!validate.checkMobile(this.props.mobile)) {
+        if (!validate.checkMobile(this.props.apiData.params.mobile)) {
             Toast.info('请输入正确的手机号')
             return false
         }

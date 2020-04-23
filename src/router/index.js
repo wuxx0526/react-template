@@ -1,25 +1,32 @@
 import React from 'react';
-import { HashRouter as Router, Route, Switch } from "react-router-dom";
-import schemeGet from '../views/commonUtils/schemeGet/index'
-import bind from '../views/user/bind'
+import { HashRouter as Router, Route, Switch, Redirect } from "react-router-dom";
+import routes from './routes'
+import auth from '../utils/auth'
 
-function Index() {
-  return <h2>JSPang.com</h2>;
+function permission(LayOut, props) {
+    const isLogin = auth.checkLoginStatus()
+    if (isLogin) {
+        return <LayOut {...props}/>
+    } else {
+        return <LayOut {...props}/>
+        /*return <Redirect to="/user/login" />*/
+    }
 }
 
-function List() {
-  return <h2>List-Page</h2>;
-}
-
-function AppRouter() {
+function AppRouter(props) {
   return (
       <div className="router-box">
           <Router>
               <Switch>
-                  <Route path="/" exact component={Index} />
+                  {
+                      routes.map((item, index) => {
+                          return <Route key={index} path={item.path} component={props => permission(item.component, props)} />
+                      })
+                  }
+                  {/*<Route path="/" exact component={Index} />
                   <Route path="/commonUtils/schemeGet" exact component={schemeGet} />
                   <Route path="/user/bind" component={bind} />
-                  <Route path="/list/" component={List} />
+                  <Route path="/list/" component={List} />*/}
               </Switch>
           </Router>
       </div>

@@ -20,7 +20,12 @@ class SchemeGet extends Component {
                 mobile: '',
                 code: ''
             },
-            apiData: {}
+            apiData: {
+                apiUrl: '/api/pq/smscode',
+                params: {
+                    mobile: ''
+                }
+            },
         }
     }
 
@@ -43,6 +48,7 @@ class SchemeGet extends Component {
                     onSecondPickerChange={this.onSecondPickerChange.bind(this)}
                     onInputChange={this.onInputChange.bind(this)}
                     onSubmit={this.submitScheme.bind(this)}
+                    apiData={this.state.apiData}
                 />
             </div>
         );
@@ -72,7 +78,9 @@ class SchemeGet extends Component {
         http.post('/api/pq/get_sulotion', form)
             .then(res => {
                 if (res.code === '0') {
-                    window.location.href = res.data
+                    Toast.info('提交成功！')
+                    // window.location.href = res.data
+                    this.props.history.push('/user/bind')
                 }
             })
     }
@@ -85,6 +93,16 @@ class SchemeGet extends Component {
                 [name]: value
             }
         })
+        if (name === 'mobile') {
+            this.setState({
+                apiData: {
+                    ...this.state.apiData,
+                    params: {
+                        mobile: value
+                    }
+                }
+            })
+        }
     }
 
     onFirstPickerChange(val) {
