@@ -58,6 +58,7 @@ class WtCodeButton extends Component {
     countDown () {
         let {countdown} = this.state
         if (countdown === 0) {
+            clearTimeout(this.timeOut1)
             this.setState({
                 codeTxt: '重新发送',
                 isDisabled: false,
